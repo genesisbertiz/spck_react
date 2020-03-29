@@ -13,7 +13,7 @@ SystemJS.config({
     'systemjs-babel-build': 'systemjs-plugin-babel@latest/systemjs-babel-browser.js',
     'react': 'react@16.4.2/umd/react.production.min.js',
     'react-dom': 'react-dom@16.4.2/umd/react-dom.production.min.js', 
-    'socketIOClient': 'jomnis-socket-client@0.4.2/dist/lib/SocketClient.js'
+    'socket.io-client': 'jomnis-socket-client@0.4.2/dist/lib/SocketClient.js'
   },
   transpiler: 'plugin-babel'
 });
