@@ -21,7 +21,9 @@ SystemJS.config({
        "framer-motion": "framer-motion@1.6.7/dist/framer-motion.js",
        "lodash": "lodash@1.3.0/dist/lodash.min.js",
       'rooks': 'rooks@3.0.2/lib/rooks.js',
-      'breakpoint': 'styled-components-breakpoint@3.0.0-preview.20/dist/index.js'
+      'breakpoint': 'styled-components-breakpoint@3.0.0-preview.20/dist/index.js', 
+      'gsap': 'gsap@3.6.0/dist/gsap.js', 
+      'gsap-scrollTrigger': 'gsap@3.6.0/dist/ScrollTrigger.min.js' 
     },
     transpiler: 'plugin-babel'
   });
