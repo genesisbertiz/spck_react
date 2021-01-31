@@ -60,7 +60,7 @@ export const Home = (props) => {
         markers: true, 
         // scrub: true, 
         start: 'top center',
-        scroller: document.body
+        scroller: '.smooth-container'
       }
     });
   }, [])
