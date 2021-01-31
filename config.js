@@ -23,7 +23,8 @@ SystemJS.config({
       'rooks': 'rooks@3.0.2/lib/rooks.js',
       'breakpoint': 'styled-components-breakpoint@3.0.0-preview.20/dist/index.js', 
       'gsap': 'gsap@3.6.0/dist/gsap.js', 
-      'gsap-scrollTrigger': 'gsap@3.6.0/dist/ScrollTrigger.min.js' 
+      'ScrollTrigger': 'gsap@3.6.0/dist/ScrollTrigger.min.js',
+      'locomotive': 'locomotive-scroll@3.2.6/dist/locomotive-scroll.min.js',
     },
     transpiler: 'plugin-babel'
   });

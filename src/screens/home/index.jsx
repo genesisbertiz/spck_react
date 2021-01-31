@@ -3,8 +3,10 @@ import { motion, useAnimation } from 'framer-motion';
 import styled, { css } from 'styled-components';
 import { breakpoint } from '../../../app.jsx'
 import _ from 'lodash';
-//import gsap from 'gsap';
-//import 'gsap-scrollTrigger'
+import gsap from 'gsap';
+import ScrollTrigger from 'ScrollTrigger';
+import locomotive from 'locomotive';
+gsap.registerPlugin(ScrollTrigger)
 
 
 const HomeContainer = styled(motion.div)(props => css``)
@@ -20,28 +22,51 @@ const BoxContainer = styled(motion.div)(props => css`
 `)
 
 export const Home = (props) => {
-  console.log(props)
   const controls = useAnimation();
   const [toggle, settoggle] = useState(false)
   
   useEffect(() => {
-    gsap.registerPlugin()
-    gsap.to("#box-5", {
+    const locomotiveScroll = new locomotive({
+      el: document.querySelector('.smooth-container'),
+      smooth: true
+    })
+    ScrollTrigger.scrollerProxy(".smooth-container", {
+      scrollTop(value) {
+        return arguments.length
+          ? locomotiveScroll.scrollTo(value, 0, 0)
+          : locomotiveScroll.scroll.instance.scroll.y;
+      },
+      getBoundingClientRect() {
+        return {
+          top: 0,
+          left: 0,
+          width: window.innerWidth,
+          height: window.innerHeight,
+        };
+      },
+      // pinType: centerContainerRef.current.style.transform ? "transform" : "fixed",
+    });
+    ScrollTrigger.addEventListener("refresh", () => locomotiveScroll.update());
+
+    // after everything is set up, refresh() ScrollTrigger and update LocomotiveScroll because padding may have been added for pinning, etc.
+    ScrollTrigger.refresh();
+    gsap.to("#box-4", {
       x: 100,
       duration: 2,
       ease: "bounce",
       delay: 1,
       scrollTrigger: {
-        trigger: "#box-5",
+        trigger: "#box-4",
         markers: true, 
-        scrub: true, 
-        end: 'top center'
+        // scrub: true, 
+        start: 'top center',
+        scroller: document.body
       }
     });
   }, [])
   const animate = useCallback(() => {
     controls.start(i => ({
-      x: toggle? 0 : 100,
+      // x: toggle? 0 : 100,
       background: toggle? '#222126' :'#eaeaea', 
       transition: {
         delay: i * 0.3,
@@ -57,7 +82,7 @@ export const Home = (props) => {
   }, [toggle])
   
   
-  return <HomeContainer onClick={animate} >
+  return <HomeContainer onClick={animate} className="smooth-container">
    {_.range(0,10).map((e, i) => 
     <BoxContainer
     layout
