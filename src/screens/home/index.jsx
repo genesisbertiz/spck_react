@@ -35,7 +35,7 @@ export const Home = (props) => {
         trigger: "#box-5",
         markers: true, 
         scrub: true, 
-        start: 'top center'
+        end: 'top center'
       }
     });
   }, [])
